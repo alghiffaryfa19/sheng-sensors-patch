@@ -20,11 +20,6 @@ source="
 	"adsprpcd-sensorspd.service"
 "
 
-sha512sums="
-	"SKIP"
-	"SKIP"
-"
-
 build() {
 	cd "$pkgname-$pkgver"
 
