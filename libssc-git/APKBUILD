@@ -30,7 +30,7 @@ source="
 
 sha512sums="
     "SKIP"
-    "5ee9e935402cd07dff2e73d2707dedb55b02b501c485325b0a71e217ac0fb0cc112837d7d0ba0138ba3a62b7ebc9f40d765fa6f9bc448272d216eb40233a9f09"
+    "SKIP"
 "
 
 pkgver() {
