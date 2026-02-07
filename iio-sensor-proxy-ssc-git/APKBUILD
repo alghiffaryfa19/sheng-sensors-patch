@@ -1,0 +1,74 @@
+# Maintainer: Filipe Laíns (FFY00) <lains@archlinux.org>
+# Contributor: Eric Lehmann <katyl@katyl.info>
+# Contributor: Thomas Fanninger <thomas@fanninger.at>
+# Contributor: ultraviolet <ultravioletnanokitty@gmail.com>
+# Contributor: Pablo Lezeta <prflr88@gmail.com>
+
+pkgname=iio-sensor-proxy-ssc-git
+pkgver=3.8.r12.ab54d18
+pkgrel=1
+pkgdesc='IIO accelerometer sensor to input device proxy'
+arch='aarch64'
+url='https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/'
+license='GPL-3.0-only'
+depends="
+  systemd
+  libgudev
+  glib2
+  polkit
+  libssc
+"
+
+makedepends="
+  gtk3
+  meson
+"
+
+checkdepends="
+  python-gobject
+  python-dbusmock
+  python-psutil
+  umockdev
+"
+
+provides='iio-sensor-proxy'
+conflicts='iio-sensor-proxy'
+source="
+  "git+https://gitlab.freedesktop.org/hadess/iio-sensor-proxy.git#branch=ssc"
+"
+
+sha512sums="
+  "SKIP"
+"
+
+pkgver() {
+  cd iio-sensor-proxy
+  printf "%s" "$(git describe --long | sed 's/\([^-]*-\)g/r\1/;s/-/./g')"
+}
+
+build() {
+  mkdir iio-sensor-proxy/build
+  cd iio-sensor-proxy/build
+
+  arch-meson .. \
+    -Dsystemdsystemunitdir=/usr/lib/systemd/system \
+    -Dudevrulesdir=/usr/lib/udev/rules.d \
+    -Dsysconfdir=/usr/share \
+    -Dssc-support=enabled
+
+  ninja
+}
+
+check() {
+  cd iio-sensor-proxy/build
+
+#  needs French locale
+#  ninja test
+}
+
+package() {
+  cd iio-sensor-proxy/build
+
+  DESTDIR="$pkgdir" ninja install
+}
+

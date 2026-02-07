@@ -1,0 +1,42 @@
+# Maintainer: Jami Kettunen <jami.kettunen@protonmail.com>
+
+pkgname="fastrpc"
+pkgver=1.0.2
+pkgrel=1
+arch="aarch64"
+url="https://github.com/qualcomm/fastrpc"
+license="BSD-3-Clause"
+makedepends="
+	git
+	make
+	gcc
+	linux-api-headers
+"
+
+depends="libyaml"
+source="
+	"https://github.com/qualcomm/$pkgname/archive/refs/tags/v$pkgver.zip"
+	"adsprpcd-sensorspd.service"
+"
+
+sha512sums="
+	"65f233361e7ee490b34f70fac758a214a4efa8bf9763c9b25c1468f5ee077b7b76c8bcd59574b521e55a0d9e173f8fbf99aa3626e27062af8c55f3058ff4c81b"
+	"cfadd008a324d19052ea69bb4d0dd57ee446dbd7a0a16b82411c8903e226fa8ef9e6c4072e23078c34d52412aa6f667fa08bdef523615368d096ea87115666be"
+"
+
+build() {
+	cd "$pkgname-$pkgver"
+
+	autoreconf -is
+	./configure --prefix=/usr
+	make
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+
+	make DESTDIR="$pkgdir" install
+
+	mkdir -p $pkgdir/usr/lib/systemd/system
+	install -m 0644 $srcdir/adsprpcd-sensorspd.service $pkgdir/usr/lib/systemd/system
+}

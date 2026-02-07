@@ -1,0 +1,53 @@
+# Maintainer: raihan2000 <raihan1999ahamed@gmail.com>
+
+pkgname=libssc-git
+pkgdesc="Library to expose Qualcomm Sensor Core sensors"
+pkgver=0.3.0.r30.g362482c
+pkgrel=1
+_arches=specific
+arch="aarch64"
+license="GPL-3.0-or-later"
+url="https://codeberg.org/DylanVanAssche/libssc"
+provides="
+    libssc
+    liblibssc.so
+"
+conflicts="libssc"
+depends="
+    "libqmi>=1.33.4"
+    glib2
+    protobuf-c
+"
+makedepends="
+    linux-api-headers
+    meson
+    git
+"
+source="
+    "git+https://codeberg.org/DylanVanAssche/libssc.git"
+    "wait_for_qmi_service.patch"
+"
+
+sha512sums="
+    "SKIP"
+    "5ee9e935402cd07dff2e73d2707dedb55b02b501c485325b0a71e217ac0fb0cc112837d7d0ba0138ba3a62b7ebc9f40d765fa6f9bc448272d216eb40233a9f09"
+"
+
+pkgver() {
+    cd libssc
+    git describe --long --abbrev=7 --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+    cd libssc
+    patch -Np1 -i ../wait_for_qmi_service.patch
+}
+
+build() {
+    arch-meson libssc build
+    meson compile -C build
+}
+
+package() {
+    DESTDIR="$pkgdir" meson install --no-rebuild -C build
+}
