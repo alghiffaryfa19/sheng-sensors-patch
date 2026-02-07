@@ -6,6 +6,9 @@ arch="aarch64"
 url="https://github.com/qualcomm/fastrpc"
 license="BSD-3-Clause"
 makedepends="
+	autoconf
+	automake
+	libtool
 	git
 	make
 	gcc
