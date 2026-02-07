@@ -2,7 +2,7 @@
 
 pkgname=libssc-git
 pkgdesc="Library to expose Qualcomm Sensor Core sensors"
-pkgver=0.3.0.r30.g362482c
+pkgver=0.3.0
 pkgrel=1
 _arches=specific
 arch="aarch64"
