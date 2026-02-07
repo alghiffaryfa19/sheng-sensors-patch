@@ -20,19 +20,17 @@ source="
 	"adsprpcd-sensorspd.service"
 "
 
-build() {
-	cd "$pkgname-$pkgver"
+builddir="$srcdir/$pkgname-v$pkgver"
 
+build() {
 	autoreconf -is
 	./configure --prefix=/usr
 	make
 }
 
 package() {
-	cd "$pkgname-$pkgver"
-
 	make DESTDIR="$pkgdir" install
 
-	mkdir -p $pkgdir/usr/lib/systemd/system
-	install -m 0644 $srcdir/adsprpcd-sensorspd.service $pkgdir/usr/lib/systemd/system
+	install -Dm644 "$srcdir/adsprpcd-sensorspd.service" \
+		"$pkgdir/usr/lib/systemd/system/adsprpcd-sensorspd.service"
 }
