@@ -24,6 +24,7 @@ source="
 builddir="$srcdir/$pkgname-v$pkgver"
 
 build() {
+	cd "$builddir"
 	autoreconf -is
 	./configure --prefix=/usr
 	make
