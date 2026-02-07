@@ -5,7 +5,8 @@
 # Contributor: Pablo Lezeta <prflr88@gmail.com>
 
 pkgname=iio-sensor-proxy-ssc-git
-pkgver=3.8.r12.ab54d18
+pkgver=3.8
+_pkgver=3.8
 pkgrel=1
 pkgdesc='IIO accelerometer sensor to input device proxy'
 arch='aarch64'
@@ -34,7 +35,7 @@ checkdepends="
 provides='iio-sensor-proxy'
 conflicts='iio-sensor-proxy'
 source="
-  "git+https://gitlab.freedesktop.org/hadess/iio-sensor-proxy.git#branch=ssc"
+  https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/-/archive/$_pkgver/iio-sensor-proxy-$_pkgver.tar.gz
 "
 
 pkgver() {
