@@ -34,10 +34,10 @@ build() {
 
 package() {
 	cd "$builddir"
-
+	rm -rf "$builddir"/test
 	make DESTDIR="$pkgdir" install
 
 	mkdir -p $pkgdir/usr/lib/systemd/system
-	rm -rf "$builddir"/test
+
 	install -m 0644 $srcdir/adsprpcd-sensorspd.service $pkgdir/usr/lib/systemd/system
 }
