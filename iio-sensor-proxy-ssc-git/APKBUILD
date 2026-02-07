@@ -12,7 +12,9 @@ pkgdesc='IIO accelerometer sensor to input device proxy'
 arch='aarch64'
 url='https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/'
 license='GPL-3.0-only'
+
 depends="
+  !iio-sensor-proxy
   systemd
   libgudev
   glib2
@@ -32,8 +34,7 @@ checkdepends="
   umockdev
 "
 
-provides='iio-sensor-proxy'
-conflicts='iio-sensor-proxy'
+
 source="
   https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/-/archive/$_pkgver/iio-sensor-proxy-$_pkgver.tar.gz
 "
