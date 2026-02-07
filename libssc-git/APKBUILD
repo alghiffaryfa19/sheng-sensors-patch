@@ -24,17 +24,19 @@ makedepends="
     git
 "
 source="
-    "git+https://codeberg.org/DylanVanAssche/libssc.git"
+    "https://codeberg.org/DylanVanAssche/libssc"
     "wait_for_qmi_service.patch"
 "
 
+builddir="$srcdir"
+
 pkgver() {
-    cd libssc
+    cd "$builddir"
     git describe --long --abbrev=7 --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
-    cd libssc
+    cd "$builddir"
     patch -Np1 -i ../wait_for_qmi_service.patch
 }
 
