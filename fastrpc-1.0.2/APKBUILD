@@ -11,10 +11,10 @@ makedepends="
 	git
 	make
 	gcc
-	linux-api-headers
+	linux-headers
 "
 
-depends="libyaml"
+depends="yaml-dev"
 source="
 	"https://github.com/qualcomm/$pkgname/archive/refs/tags/v$pkgver.zip"
 	"adsprpcd-sensorspd.service"
