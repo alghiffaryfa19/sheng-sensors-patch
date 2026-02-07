@@ -37,10 +37,6 @@ source="
   "git+https://gitlab.freedesktop.org/hadess/iio-sensor-proxy.git#branch=ssc"
 "
 
-sha512sums="
-  "SKIP"
-"
-
 pkgver() {
   cd iio-sensor-proxy
   printf "%s" "$(git describe --long | sed 's/\([^-]*-\)g/r\1/;s/-/./g')"
