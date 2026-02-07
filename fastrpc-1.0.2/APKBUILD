@@ -21,7 +21,7 @@ source="
 	"adsprpcd-sensorspd.service"
 "
 
-builddir="$srcdir/$pkgname-v$pkgver"
+builddir="$srcdir/$pkgname-$pkgver"
 
 build() {
 	cd "$builddir"
