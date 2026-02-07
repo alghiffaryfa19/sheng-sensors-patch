@@ -31,8 +31,10 @@ build() {
 }
 
 package() {
+	cd "$builddir"
+
 	make DESTDIR="$pkgdir" install
 
-	install -Dm644 "$srcdir/adsprpcd-sensorspd.service" \
-		"$pkgdir/usr/lib/systemd/system/adsprpcd-sensorspd.service"
+	mkdir -p $pkgdir/usr/lib/systemd/system
+	install -m 0644 $srcdir/adsprpcd-sensorspd.service $pkgdir/usr/lib/systemd/system
 }
