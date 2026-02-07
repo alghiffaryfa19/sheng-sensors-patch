@@ -12,8 +12,9 @@ provides="
     libssc
     liblibssc.so
 "
-conflicts="libssc"
+
 depends="
+    !libssc
     "libqmi>=1.33.4"
     glib2
     protobuf-c
