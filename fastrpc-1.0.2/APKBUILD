@@ -29,7 +29,7 @@ build() {
 	./configure --prefix=/usr
 	make
 
-	rm -rf "$builddir"/test
+	
 }
 
 package() {
@@ -38,5 +38,6 @@ package() {
 	make DESTDIR="$pkgdir" install
 
 	mkdir -p $pkgdir/usr/lib/systemd/system
+	rm -rf "$builddir"/test
 	install -m 0644 $srcdir/adsprpcd-sensorspd.service $pkgdir/usr/lib/systemd/system
 }
