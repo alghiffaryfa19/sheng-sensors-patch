@@ -1,28 +1,33 @@
-# Maintainer: Jami Kettunen <jami.kettunen@protonmail.com>
-
-pkgname=fastrpc
+pkgname="fastrpc"
+pkgdesc="fastrpc Xiaomi Mi Pad 6s Pro"
 pkgver=1.0.2
 pkgrel=1
-pkgdesc="FastRPC daemon for Xiaomi Mi Pad 6s Pro"
 arch="aarch64"
-license="BSD-3-Clause"
 url="https://github.com/qualcomm/fastrpc"
-
-depends=""
-makedepends=""
-
-source="
-	adsprpcd
-	adsprpcd-sensorspd.service
+license="BSD-3-Clause"
+makedepends="
+	git
+	make
+	gcc
+	linux-headers
 "
 
+depends="yaml-dev"
+source="
+	"https://github.com/qualcomm/$pkgname/archive/refs/tags/v$pkgver.zip"
+	"adsprpcd-sensorspd.service"
+"
+
+builddir="$srcdir/$pkgname-v$pkgver"
+
 build() {
-	return 0
+	autoreconf -is
+	./configure --prefix=/usr
+	make
 }
 
 package() {
-	install -Dm755 "$srcdir/adsprpcd" \
-		"$pkgdir/usr/bin/adsprpcd"
+	make DESTDIR="$pkgdir" install
 
 	install -Dm644 "$srcdir/adsprpcd-sensorspd.service" \
 		"$pkgdir/usr/lib/systemd/system/adsprpcd-sensorspd.service"
