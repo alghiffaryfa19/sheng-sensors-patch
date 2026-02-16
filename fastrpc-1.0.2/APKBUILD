@@ -18,7 +18,7 @@ makedepends="
 depends="yaml-dev"
 source="
 	"https://github.com/qualcomm/$pkgname/archive/refs/tags/v$pkgver.zip"
-	"sensorspd"
+	"adsprpcd-sensorspd.service"
 "
 
 builddir="$srcdir/$pkgname-$pkgver"
@@ -41,6 +41,5 @@ package() {
 
 	mkdir -p $pkgdir/usr/lib/systemd/system
 
-	install -Dm755 "$srcdir/sensorspd" \
-		"$pkgdir/etc/init.d/sensorspd"
+	install -m 0644 $srcdir/adsprpcd-sensorspd.service $pkgdir/usr/lib/systemd/system
 }
