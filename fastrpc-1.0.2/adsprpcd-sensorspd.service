@@ -5,7 +5,7 @@ ConditionPathExists=|/dev/fastrpc-adsp-secure
 
 [Service]
 Type=exec
-ExecStart=/usr/bin/hexagonrpcd sensorspd
+ExecStart=/usr/bin/adsprpcd sensorspd
 Restart=on-failure
 RestartSec=5
 
