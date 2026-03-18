@@ -10,7 +10,7 @@ on:
 
 permissions:
   contents: write
-  
+
 jobs:
   build:
     runs-on: ubuntu-24.04-arm
@@ -126,7 +126,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: iio-sensor-proxy-ssc-patched
-          path: "*.deb"
+          path: "${PKGNAME}_*.deb"
 
       - name: "Release"
         uses: softprops/action-gh-release@v1
@@ -135,7 +135,7 @@ jobs:
           name: "iio_sensor_patched"
           draft: false
           prerelease: false
-          files: "*.deb"
+          files: "${PKGNAME}_*.deb"
           generate_release_notes: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
