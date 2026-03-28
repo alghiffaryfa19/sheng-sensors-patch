@@ -153,7 +153,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: iio-sensor-proxy-ssc-patched
-          path: "${PKGNAME}_*.deb"
+          path: iio*.deb
 
       - name: "Release"
         uses: softprops/action-gh-release@v1
@@ -162,7 +162,7 @@ jobs:
           name: "iio_sensor_patched"
           draft: false
           prerelease: false
-          files: "${PKGNAME}_*.deb"
+          files: iio*.deb
           generate_release_notes: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
