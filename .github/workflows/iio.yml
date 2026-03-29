@@ -91,7 +91,7 @@ jobs:
           meson setup output \
             --prefix=/usr \
             -Db_lto=true \
-            -Dssc-support=enable \
+            -Dssc-support=enabled \
             -Dsystemdsystemunitdir=/usr/lib/systemd/system
 
           meson compile -C output
